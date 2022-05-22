@@ -1,45 +1,27 @@
-# FlixMenu React Starter Kit
+# Decoil
 
-Start your react frontend code seemlessly, without stress
+> Decoild was built during a A 24hrs Hackathon.
+
+The one and only tool you would ever need to ease your `Academics`. Decoil provides a way for student to remain productive during and before an upcoming exams by `Organizing` zoom links for students, `automate` `opening` them. `Never` `miss` a class, never look for `links`. Not just that, It also provide an interface for student to monitor when a particular class would be held by sending the student a mail right to their inbox when a class is about to begin.
+
 
 ----------
 
-# What Included? 
+## Inspiration
 
-This repo contain the following dependencies below.
+I kept having to look for the class join link every single day.
 
-## Important
+## What it does
 
-- [x] React
-- [x] React-DOM
-- [x] React-Router
-- [x] React-Router-DOM
-- [x] TailwindCss : a utitility framework which enables development faster with css.
+Organizes links onto a list and opens them on a user-defined schedule.
 
-## Optional 
+## Built With
 
-- [x] Notyf : adds `Toast` notification styles like to your react project.
-- [x] FramerMotion : easily add slick and smooth animations to your react application.
-- [x] JwtDecode : for working with `JsonWebTokens` (Authentication / Authorization) within the browser.
-- [x] AOS : Animate On Scroll.
+`React.js`
+`Javascript`
+`SMTP`
+`Problem Solving Technique`
 
+## Attention
 
-### You might not need any of the dependencies mentioned above, feel free to edit the `package.json` file and reinstall every other package which might be needed.
-
-# Setup
-
-## Clone Repo
-
-```js
-
-    git clone https://github.com/FlixMenu/web-starter-kit.git
-
-```
-
-## Install all dependencies
-
-```
-    npm install
-
-    yarn add
-```
+> `DECOIL` is still in development.
