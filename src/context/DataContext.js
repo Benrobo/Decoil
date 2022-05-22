@@ -16,5 +16,3 @@ export function DataContextProvider({ children }) {
         </DataContext.Provider>
     )
 }
-
-export default DataContextProvider

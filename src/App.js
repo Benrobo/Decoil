@@ -4,6 +4,7 @@ import "./index.css"
 import { BrowserRouter as Router, Route } from "react-router-dom"
 import { Routes } from "react-router"
 import { Layout, LinkSchedules } from "./component"
+import { DataContextProvider } from "./context/DataContext"
 
 
 export default function App() {
@@ -13,12 +14,14 @@ export default function App() {
   }
 
   return (
-    <Layout>
-      <Router>
-        <Routes>
-          <Route path="/" element={<LinkSchedules />} />
-        </Routes>
-      </Router>
-    </Layout>
+    <DataContextProvider>
+      <Layout>
+        <Router>
+          <Routes>
+            <Route path="/" element={<LinkSchedules />} />
+          </Routes>
+        </Router>
+      </Layout>
+    </DataContextProvider>
   )
 }
