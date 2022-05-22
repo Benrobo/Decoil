@@ -3,7 +3,7 @@ import { Container } from '..'
 import { FaArrowLeft } from "react-icons/fa"
 import { BiTime } from "react-icons/bi"
 import { FiMoreVertical } from 'react-icons/fi'
-
+import moment from 'moment'
 import { Notification, UUID, validURL } from "../../helpers/util"
 
 const notif = new Notification()
@@ -141,6 +141,8 @@ export default LinkSchedules
 function LinkCards({ links, setIsChanged }) {
 
     const [isactive, setIsActive] = useState(false)
+    const [linkPreview, setLinkPreview] = useState(false)
+    const [url, setUrl] = useState("")
 
     function showMoreCont(e) {
 
@@ -168,6 +170,17 @@ function LinkCards({ links, setIsChanged }) {
         }
     }
 
+    function openLinkPreview(e) {
+        let { id } = e.target.dataset;
+        let prevLinks = JSON.parse(localStorage.getItem("link_schedules"));
+
+        if (typeof id !== undefined) {
+            let targetLink = prevLinks.filter((link) => link.id === id)[0]
+            setUrl(targetLink.url)
+            setLinkPreview(true)
+        }
+    }
+
     return (
         <>
             {
@@ -178,11 +191,12 @@ function LinkCards({ links, setIsChanged }) {
 
                         <div className="w-full mt-2 h-[150px] max-h-[180px] p-0 bg-white-100 shadow-xl rounded-[2px] relative flex flex-row items-center justify-start overflow-hidden">
                             <div className="w-[10px] h-full bg-dark-200  "></div>
-                            <div className="body px-5 py-3 w-full h-auto">
+                            <div className="body px-5 py-3 w-full h-auto relative">
                                 <h2 id="title" className="text-[20px] font-bold ">{list.title}</h2>
                                 <div id="time" className='flex flex-row items-center justify-start mt-4 mb-3'>
                                     <BiTime className='mr-4 text-white-400  text-[15px] ' />
-                                    <span className="text-white-400 font-bold ">{list.time}{list.timeOffset.toLowerCase()}</span>
+                                    <span className="text-white-400 font-bold text-[13px] ">{list.time}{list.timeOffset.toLowerCase()}</span>
+                                    <span className="text-white-400 font-bold text-[13px] ml-3 ">{moment(list.date).format("MMM Do YY")}</span>
                                 </div>
 
                                 {
@@ -196,6 +210,8 @@ function LinkCards({ links, setIsChanged }) {
 
                             <FiMoreVertical className=" text-[40px] p-3 text-dark-200 absolute right-5 top-5 transition-all hover:bg-white-300 hover:scale-[.90] cursor-pointer" data-id={list.id} onClick={showMoreCont} />
 
+                            <ion-icon name="eye" class="absolute right-4 bottom-4 text-[20px] p-3 cursor-pointer text-dark-200 " onClick={openLinkPreview} data-id={list.id}></ion-icon>
+
                             <div id="more-cont" data-id={list.id} className={`w-[150px] h-auto flex items-start justify-start flex-col gap-3 absolute top-[-100px] transition-all right-[90px] list-none bg-white-100 shadow-md rounded-md overflow-hidden shadow-dark-400 p-2 `}>
                                 {/* <li className="px-3 py-1 w-full hover:bg-blue-200 hover:text-white-100 rounded-md cursor-pointer">Edit</li> */}
                                 <li className="px-3 py-1 hover:bg-red-200 hover:text-white-100 rounded-md cursor-pointer w-full" onClick={deleteLink} data-id={list.id}>Delete</li>
@@ -203,6 +219,7 @@ function LinkCards({ links, setIsChanged }) {
                         </div>
                     ))
             }
+            {linkPreview && <LinkPreview setLinkPreview={setLinkPreview} url={url} />}
         </>
     )
 }
@@ -215,7 +232,7 @@ function AddSchedule({ setActiveSchedule, setIsChanged }) {
         title: "",
         url: "",
         category: "",
-        description: "",
+        date: "",
         time: ""
     })
 
@@ -285,7 +302,7 @@ function AddSchedule({ setActiveSchedule, setIsChanged }) {
 
     function saveDataToStorage() {
 
-        const { title, url, category, description, time } = inputs;
+        const { title, url, category, date, time } = inputs;
 
         if (title === "") {
             return notif.error("title cant be blank")
@@ -296,8 +313,8 @@ function AddSchedule({ setActiveSchedule, setIsChanged }) {
         if (category === "") {
             return notif.error("category cant be blank")
         }
-        if (description === "") {
-            return notif.error("description cant be blank")
+        if (date === "") {
+            return notif.error("date cant be blank")
         }
         if (time === "") {
             return notif.error("time cant be blank")
@@ -319,7 +336,7 @@ function AddSchedule({ setActiveSchedule, setIsChanged }) {
         const dataToBeStored = {
             id: UUID(10),
             title,
-            description,
+            date,
             category,
             time,
             url,
@@ -385,7 +402,7 @@ function AddSchedule({ setActiveSchedule, setIsChanged }) {
                     <input type="url" className="w-full px-2 py-2 rounded bg-white-200 shadow-lgs " name="url" onChange={handleInputs} value={inputs.url} placeholder='url' />
                     <br />
                     <div id="top" className="w-full flex flex-row items-center justify-between mt-5 gap-2">
-                        <input type="text" className="w-[50%] px-2 py-2 rounded bg-white-200 shadow-lgs " placeholder='description' name="description" onChange={handleInputs} value={inputs.description} maxLength={30} />
+                        <input type="date" className="w-[50%] px-2 py-2 rounded bg-white-200 shadow-lgs " placeholder='date' name="date" onChange={handleInputs} value={inputs.date} maxLength={30} />
 
                         <input type="text" className="w-[50%] px-2 py-2 rounded bg-white-200 shadow-lgs " placeholder='category' name="category" onChange={handleInputs} value={inputs.category} maxLength={20} />
                     </div>
@@ -396,6 +413,42 @@ function AddSchedule({ setActiveSchedule, setIsChanged }) {
                     </div>
                 </div>
             </div>
+        </div>
+    )
+}
+
+function LinkPreview({ setLinkPreview, url }) {
+
+    function openLink() {
+
+        window.open(url)
+        setLinkPreview(false)
+    }
+
+    return (
+        <div className="w-[60%] mx-auto h-screen fixed top-0 bg-dark-4100 flex flex-col items-center justify-center p-5 z-[135] ">
+
+            <div className=" w-full md:w-[400px] mx-auto h-auto bg-white-100 shadow-2xl overflow-hidden rounded-md ">
+                <div className="top w-full h-auto p-3 bg-dark-100 ">
+                    <h2 className="text-[15px] text-white-200 ">Open Link</h2>
+                </div>
+                <br />
+                <p className="font-bold italic px-5 py-2 underline text-blue-200  ">
+                    {url}
+                </p>
+                <br />
+                <br />
+                <div id="bottom" className="w-full p-3 flex flex-row items-center justify-end bg-white-200">
+
+                    <button className="px-4 py-2 text-dark-100 font-bold " onClick={() => setLinkPreview(false)}>
+                        Cancel
+                    </button>
+                    <button className="px-4 py-2 text-white-100  bg-blue-200 rounded-md " onClick={openLink}>
+                        Confirm
+                    </button>
+                </div>
+            </div>
+
         </div>
     )
 }
