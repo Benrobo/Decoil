@@ -120,10 +120,10 @@ function LinkSchedules() {
                 <div className="w-full h-full overflow-y-scroll relative p-5 gap-2 ">
                     <LinkCards links={links} setIsChanged={setIsChanged} />
 
-                    <div id="space" className="w-full h-[150px] "></div>
+                    <div id="space" className="w-full h-[250px] "></div>
                 </div>
 
-                <div className="w-full h-[100px] absolute bottom-0 left-0 flex flex-col items-center justify-center z-[100]">
+                <div className="w-full h-[100px] absolute bottom-0 mx-auto flex flex-col items-center justify-center z-[100]">
                     <button id="addLinks" className="w-[200px] px-5 py-4 bg-blue-200 shadow-lg rounded-[30px] text-white-100 absolute transition-all cursor-pointer scale-[.90] hover:scale-[.95] " onClick={() => setActiveSchedule(true)}>
                         New Schedule
                     </button>
@@ -208,11 +208,13 @@ function LinkCards({ links, setIsChanged }) {
                                 }
                             </div>
 
-                            <FiMoreVertical className=" text-[40px] p-3 text-dark-200 absolute right-5 top-5 transition-all hover:bg-white-300 hover:scale-[.90] cursor-pointer" data-id={list.id} onClick={showMoreCont} />
+                            <button className="px-3 py-2 flex flex-row items-center justify-center bg-blue-200 opacity-[.8] text-white-100 absolute right-5 top-5 transition-all scale-[.65] rounded-md text-[12px] " data-id={list.id} onClick={showMoreCont}>
+                                more
+                            </button>
 
                             <ion-icon name="eye" class="absolute right-4 bottom-4 text-[20px] p-3 cursor-pointer text-dark-200 " onClick={openLinkPreview} data-id={list.id}></ion-icon>
 
-                            <div id="more-cont" data-id={list.id} className={`w-[150px] h-auto flex items-start justify-start flex-col gap-3 absolute top-[-100px] transition-all right-[90px] list-none bg-white-100 shadow-md rounded-md overflow-hidden shadow-dark-400 p-2 `}>
+                            <div id="more-cont" data-id={list.id} className={`w-[150px] h-auto flex items-start justify-start flex-col gap-3 absolute top-[-70px] transition-all right-[90px] list-none bg-white-100 shadow-md rounded-md overflow-hidden shadow-dark-400 p-2 `}>
                                 {/* <li className="px-3 py-1 w-full hover:bg-blue-200 hover:text-white-100 rounded-md cursor-pointer">Edit</li> */}
                                 <li className="px-3 py-1 hover:bg-red-200 hover:text-white-100 rounded-md cursor-pointer w-full" onClick={deleteLink} data-id={list.id}>Delete</li>
                             </div>
