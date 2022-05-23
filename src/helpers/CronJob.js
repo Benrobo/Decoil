@@ -47,7 +47,7 @@ async function CronJob() {
                             if (days.includes(schedDay)) {
                                 if (currHours >= schedHour) {
 
-                                    if (schedMin >= currMin) {
+                                    if (currMin >= schedMin) {
                                         console.log("CRON JOB LOGGING.");
                                         await sleep(2)
                                         // open url

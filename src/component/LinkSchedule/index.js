@@ -431,7 +431,7 @@ function LinkPreview({ setLinkPreview, url }) {
     }
 
     return (
-        <div className="w-[60%] mx-auto h-screen fixed top-0 bg-dark-4100 flex flex-col items-center justify-center p-5 z-[135] ">
+        <div className="w-full md:w-[60%] mx-auto h-screen fixed top-0 bg-dark-4100 flex flex-col items-center justify-center p-5 z-[135] ">
 
             <div className=" w-full md:w-[400px] mx-auto h-auto bg-white-100 shadow-2xl overflow-hidden rounded-md ">
                 <div className="top w-full h-auto p-3 bg-dark-100 ">
