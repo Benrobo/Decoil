@@ -23,14 +23,13 @@ function FlashCard() {
                             </Link>
                             <h2 className=" text-[20px] text-dark-100">Flash Cards  (Swipe Left or Right) </h2>
                         </div>
-                        <br />
                     </div>
-                    <br />
                     <div className="w-full h-screen">
-                        <div className="head">
-                            {/* <h2 className="text-[20px] ">Level Up Your Knowledge</h2> */}
+                        <div className="head w-full h-auto  text-center ">
+                            <span className="text-[15px] rounded-md p-2 text-white-100 bg-blue-200">Level Up Your Academical Knowledge</span>
                         </div>
-                        {/* <br /> */}
+                        <br />
+                        <br />
                         <div className="w-full h-[350px] flex flex-col items-center jubstify-center overflow-hidden gap-5">
                             <TinderCardSwipe />
                         </div>
