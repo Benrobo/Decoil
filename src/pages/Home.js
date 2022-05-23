@@ -3,6 +3,7 @@ import { Container } from '../component'
 
 import { CgCardClubs } from 'react-icons/cg'
 import { AiOutlineLink } from 'react-icons/ai'
+import { Link } from 'react-router-dom'
 
 function Home() {
 
@@ -51,17 +52,6 @@ function AppOptions({ openModal }) {
         }
     }
 
-    function navigate(type = "") {
-        if (type === "link") {
-            window.location = ("/link-schedule")
-            return
-        }
-        if (type === "flash-card") {
-            window.location = ("/flash-card")
-            return
-        }
-    }
-
     return (
         <div data-type="modal" className="w-full h-screen absolute top-0 left-0 flex flex-col items-center justify-center text-center z-[200] p-[10px] bg-dark-400 " onClick={closeModal}>
 
@@ -70,15 +60,19 @@ function AppOptions({ openModal }) {
                     <h2 className='text-white-100 text-[20px] '>Select One</h2>
                 </div>
                 <div className="w-full  flex flex-row items-center justify-center p-[20px] gap-3">
-                    <button className="w-[200px] h-[100px] bg-blue-200 rounded-md p-5 text-white-100 flex flex-col items-center justify-center " onClick={() => navigate("flash-card")}>
-                        <CgCardClubs className='text-[200px]' />
-                        <span className='mt-2'>Flash Cards</span>
-                    </button>
+                    <Link to="/flash-card">
+                        <button className="w-[200px] h-[100px] bg-blue-200 rounded-md p-5 text-white-100 flex flex-col items-center justify-center ">
+                            <CgCardClubs className='text-[200px]' />
+                            <span className='mt-2'>Flash Cards</span>
+                        </button>
+                    </Link>
 
-                    <button className="w-[200px] h-[100px] bg-blue-200 rounded-md p-5  text-white-100 flex flex-col items-center justify-center" onClick={() => navigate("link")}>
-                        <AiOutlineLink className='text-[200px]' />
-                        Links Schedule
-                    </button>
+                    <Link to="/link-schedule">
+                        <button className="w-[200px] h-[100px] bg-blue-200 rounded-md p-5  text-white-100 flex flex-col items-center justify-center">
+                            <AiOutlineLink className='text-[200px]' />
+                            Links Schedule
+                        </button>
+                    </Link>
                 </div>
                 <br />
             </div>
