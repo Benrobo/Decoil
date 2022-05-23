@@ -5,6 +5,8 @@ import { BrowserRouter as Router, Route } from "react-router-dom"
 import { Routes } from "react-router"
 import { Layout, LinkSchedules } from "./component"
 import { DataContextProvider } from "./context/DataContext"
+import Home from "./pages/Home"
+import FlashCard from "./pages/FlashCards"
 
 
 export default function App() {
@@ -18,7 +20,9 @@ export default function App() {
       <Layout>
         <Router>
           <Routes>
-            <Route path="/" element={<LinkSchedules />} />
+            <Route path="/link-schedule" element={<LinkSchedules />} />
+            <Route path="/flash-card" element={<FlashCard />} />
+            <Route path="/" element={<Home />} />
           </Routes>
         </Router>
       </Layout>

@@ -5,6 +5,7 @@ import { BiTime } from "react-icons/bi"
 import { FiMoreVertical } from 'react-icons/fi'
 import moment from 'moment'
 import { Notification, UUID, validURL } from "../../helpers/util"
+import { Link } from 'react-router-dom'
 
 const notif = new Notification()
 
@@ -99,7 +100,9 @@ function LinkSchedules() {
         <Container>
             <div className="relative w-full h-screen bg-white-300">
                 <div className="w-full flex flex-row items-center justify-start p-3 relative ">
-                    <FaArrowLeft className=' text-[35px] mr-[30px] text-dark-100 p-2 hover:bg-dark-200 hover:text-white-100 hover:shadow-lg rounded-md ' />
+                    <Link to="/">
+                        <FaArrowLeft className=' text-[35px] mr-[30px] text-dark-100 p-2 hover:bg-dark-200 hover:text-white-100 hover:shadow-lg rounded-md ' />
+                    </Link>
                     <h2 className=" text-[20px] text-dark-100">Scheduled Links.</h2>
                 </div>
                 <br />

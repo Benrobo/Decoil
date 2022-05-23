@@ -12,7 +12,7 @@ export function DataContextProvider({ children }) {
     useEffect(() => {
         setInterval(() => {
             CronJob()
-            console.log("LOGING")
+            // console.log("LOGING")
         }, 15000);
     }, [])
 
