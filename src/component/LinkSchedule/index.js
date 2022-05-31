@@ -11,7 +11,7 @@ const notif = new Notification()
 
 
 function getDays(day) {
-    switch(praseInt(day)){
+    switch(parseInt(day)){
      case 1:
       return "Mon"
      break;
