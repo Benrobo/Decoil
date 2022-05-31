@@ -11,28 +11,33 @@ const notif = new Notification()
 
 
 function getDays(day) {
-
-    if (parseInt(day) == 1) {
-        return "Mon"
+    switch(praseInt(day)){
+     case 1:
+      return "Mon"
+     break;
+     case 2: 
+      return "Tue"
+     break;
+     case 3: 
+      return "Wed"
+     break;
+     case 4: 
+      return "Thur"
+     break;
+     case 5: 
+      return "Fri"
+     break;
+     case 6: 
+      return "Sat"
+     break;
+    case 7: 
+      return "Sun"
+     break;
+    default:
+      return false //or better return today's date
+     break;
     }
-    if (parseInt(day) == 2) {
-        return "Tue"
-    }
-    if (parseInt(day) == 3) {
-        return "Wed"
-    }
-    if (parseInt(day) == 4) {
-        return "Thur"
-    }
-    if (parseInt(day) == 5) {
-        return "Fri"
-    }
-    if (parseInt(day) == 6) {
-        return "Sat"
-    }
-    if (parseInt(day) == 7) {
-        return "Sun"
-    }
+    
 
 }
 
